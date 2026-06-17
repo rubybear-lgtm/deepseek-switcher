@@ -1,30 +1,36 @@
 # deepseek-switcher
 
-`deepseek-switcher` (aliased as `dswitch`) is a CLI tool that switches
-Claude Code's model API provider between **DeepSeek** and the default
-**Anthropic** backend.
+CLI tool that switches Claude Code's model API provider between
+**DeepSeek** and the default **Anthropic** backend.
 
 No shell profile modifications required. Works in any terminal and shell
 (Zsh, Bash, Fish, etc.) out of the box.
 
 ---
 
-## Quick Start
-
-### 1. Install & Link
+## Install
 
 ```bash
-npm install
-npm link
+npm install -g rubybear-lgtm/deepseek-switcher
 ```
 
-This registers:
+This registers the following commands globally:
 
-- `dswitch` / `deepseek-switcher` -- interactive switcher wizard
+- `dswitch` -- interactive switcher wizard
 - `ccode` / `cld` -- launch Claude Code with the active provider
 - `deepclaude` -- launch Claude Code with DeepSeek (direct, ignores active provider)
 
-### 2. Switch Provider
+## Uninstall
+
+```bash
+npm uninstall -g deepseek-switcher
+```
+
+---
+
+## Usage
+
+### Switch Provider
 
 ```bash
 dswitch                    # interactive wizard
@@ -32,35 +38,29 @@ dswitch switch deepseek    # quick-switch to DeepSeek
 dswitch switch anthropic   # quick-switch back to Anthropic
 ```
 
-### 3. Launch
+### Launch
 
 ```bash
-ccode          # launches Claude Code with the active provider
-deepclaude     # always launches Claude Code with DeepSeek
+ccode          # Claude Code with the active provider
+deepclaude     # always Claude Code with DeepSeek
 claude         # bypasses the switcher entirely (native Anthropic)
 ```
 
 Arguments are forwarded directly to Claude Code
 (e.g. `ccode --help`, `deepclaude --model deepseek-v4-flash[1m]`).
 
----
-
-## Commands
+### Other Commands
 
 | Command | Description |
 | :--- | :--- |
-| `dswitch` | Interactive switcher wizard |
-| `ccode` / `cld` | Launch Claude Code with active provider |
-| `deepclaude` | Launch Claude Code with DeepSeek (direct) |
 | `dswitch status` | Show active provider and API key status |
 | `dswitch config` | Configure the DeepSeek API key |
 | `dswitch clear` | Clear saved API key |
-| `dswitch switch <provider>` | Switch provider (`anthropic` or `deepseek`) |
 | `dswitch setup` | Clean up legacy shell integrations |
 
 ---
 
-## DeepSeek Configuration
+## How It Works
 
 When DeepSeek is active, the launcher sets these environment variables
 before spawning `claude`:
@@ -79,12 +79,8 @@ before spawning `claude`:
 When Anthropic is active, all custom environment variables are removed and
 Claude Code runs with its default configuration.
 
----
-
-## Configuration Files
-
-- API keys and active provider: `~/.config/deepseek-switcher/config.json`
-- Claude Code settings (cleaned by `dswitch setup`): `~/.claude/settings.json`
+API keys and active provider are stored in
+`~/.config/deepseek-switcher/config.json`.
 
 ---
 
