@@ -1,0 +1,38 @@
+{
+  "name": "deepseek-switcher",
+  "version": "1.0.0",
+  "description": "Switch Claude Code model API provider between DeepSeek and default Anthropic.",
+  "type": "module",
+  "main": "./src/index.js",
+  "bin": {
+    "deepseek-switcher": "./src/index.js",
+    "dswitch": "./src/index.js",
+    "ccode": "./src/launcher.js",
+    "cld": "./src/launcher.js",
+    "deepclaude": "./src/deepclaude.js"
+  },
+  "files": [
+    "src/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "echo \"no tests\" && exit 0"
+  },
+  "keywords": [
+    "claude-code",
+    "claude",
+    "deepseek",
+    "switcher",
+    "cli"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "dependencies": {
+    "@clack/prompts": "^0.9.1",
+    "picocolors": "^1.1.1"
+  }
+}
